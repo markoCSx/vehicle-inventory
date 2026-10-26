@@ -33,6 +33,25 @@ public class Vehicle {
         System.out.println("----------------------------------------------");
     }
 
+    public void setData() {
+        System.out.println("Enter Vehicle ID: ");
+        setVehicleId(Long.parseLong(VehicleInventoryApp.userInput.nextLine()));
+
+        System.out.println("Enter Vehicle Model: ");
+        setMakeModel(VehicleInventoryApp.userInput.nextLine());
+
+        System.out.println("Enter Vehicle Color: ");
+        setColor(VehicleInventoryApp.userInput.nextLine());
+
+        System.out.println("Enter Vehicle Odometer Reading: ");
+        setOdometerReading(Integer.parseInt(VehicleInventoryApp.userInput.nextLine()));
+
+        System.out.println("Enter Vehicle Price: ");
+        setPrice(Double.parseDouble(VehicleInventoryApp.userInput.nextLine()));
+
+        System.out.println("----------------------------------------------");
+    }
+
     public long getVehicleId() {
         return vehicleId;
     }

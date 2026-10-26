@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class VehicleInventoryApp {
 
-    static Scanner userInput = new Scanner(System.in);
-    static String userText;
+    public static Scanner userInput = new Scanner(System.in);
+    public static String userText;
 
     public static void main(String[] args) {
 
@@ -37,6 +37,7 @@ public class VehicleInventoryApp {
                 for (int i = 0; i < 6; i++) {
                     vInventory[1].data();
                 }/*end*/
+                break;
             }
             case 2 -> {
                 System.out.print("Enter Make/Model: ");
@@ -51,11 +52,26 @@ public class VehicleInventoryApp {
                 if (tags == 0) {
                     System.out.println("None found");
                 }
+                break;
             }
-            /*case 3 ->
-            case 4 ->
-            case 5 ->
-            case 6 ->*/
+            case 3 -> {
+                break;
+            }
+            case 4 -> {
+                break;
+            }
+            case 5 -> {
+                for (int i = 0; i < vInventory.length; i++) {
+                    if (String.format("%s", vInventory[i]).equalsIgnoreCase("null")) {
+                        vInventory[i] = new Vehicle();
+                        vInventory[i].setData();
+                        break;
+                    }
+                }
+            }
+            case 6 -> {
+                break;
+            }
         }
 
         userInput.close();

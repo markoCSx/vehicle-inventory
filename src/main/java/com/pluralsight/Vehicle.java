@@ -24,6 +24,15 @@ public class Vehicle {
         this.price = price;
     }
 
+    public void data() {
+        System.out.println("Vehicle ID: " + this.vehicleId);
+        System.out.println("Vehicle Model: " + this.makeModel);
+        System.out.println("Vehicle Color: " + this.color);
+        System.out.println("Vehicle Odometer Reading: " + this.odometerReading);
+        System.out.println("Vehicle Price: " + this.price);
+        System.out.println("----------------------------------------------");
+    }
+
     public long getVehicleId() {
         return vehicleId;
     }

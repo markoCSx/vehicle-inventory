@@ -25,22 +25,34 @@ public class VehicleInventoryApp {
                 4 - Search by color
                 5 - Add a vehicle
                 6 - Quit
-                Enter your command:\t""");
-        userText = userInput.nextLine();
-        int answer = Integer.parseInt(userText);
+                """);
+        int answer = 0;
+        while (answer <= 0 || answer > 6) {
+            System.out.println("Enter your command: ");
+            userText = userInput.nextLine();
+            answer = Integer.parseInt(userText);
+        }
         switch (answer) {
             case 1 -> {
                 for (int i = 0; i < 6; i++) {
-                    System.out.println("Vehicle ID: " + vInventory[i].getVehicleId());
-                    System.out.println("Vehicle Model: " + vInventory[i].getMakeModel());
-                    System.out.println("Vehicle Color: " + vInventory[i].getColor());
-                    System.out.println("Vehicle Odometer Reading: " + vInventory[i].getOdometerReading());
-                    System.out.println("Vehicle Price: " + vInventory[i].getPrice());
-                    System.out.println("----------------------------------------------");
+                    vInventory[1].data();
+                }/*end*/
+            }
+            case 2 -> {
+                System.out.print("Enter Make/Model: ");
+                userText = userInput.nextLine();
+                int tags = 0;
+                for (int i = 0; i < 6; i++) {
+                    if (vInventory[i].getMakeModel().equalsIgnoreCase(userText)) {
+                        vInventory[i].data();
+                        tags += 1;
+                    }
+                }/*end loop*/
+                if (tags == 0) {
+                    System.out.println("None found");
                 }
             }
-            /*case 2 ->
-            case 3 ->
+            /*case 3 ->
             case 4 ->
             case 5 ->
             case 6 ->*/

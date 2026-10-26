@@ -31,7 +31,7 @@ public class VehicleInventoryApp {
             System.out.println("Enter your command: ");
             userText = userInput.nextLine();
             answer = Integer.parseInt(userText);
-        }
+        }/
         switch (answer) {
             case 1 -> {
                 for (int i = 0; i < 6; i++) {

@@ -24,7 +24,7 @@ public class Vehicle {
         this.price = price;
     }
 
-    public void data() {
+    public void getData() {
         System.out.println("Vehicle ID: " + this.vehicleId);
         System.out.println("Vehicle Model: " + this.makeModel);
         System.out.println("Vehicle Color: " + this.color);

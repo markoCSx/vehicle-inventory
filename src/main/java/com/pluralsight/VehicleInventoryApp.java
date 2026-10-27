@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class VehicleInventoryApp {
@@ -31,12 +32,12 @@ public class VehicleInventoryApp {
             System.out.println("Enter your command: ");
             userText = userInput.nextLine();
             answer = Integer.parseInt(userText);
-        }/
+        }
         switch (answer) {
             case 1 -> {
                 for (int i = 0; i < 6; i++) {
-                    vInventory[1].data();
-                }/*end*/
+                    vInventory[1].getData();
+                }
                 break;
             }
             case 2 -> {
@@ -45,16 +46,61 @@ public class VehicleInventoryApp {
                 int tags = 0;
                 for (int i = 0; i < 6; i++) {
                     if (vInventory[i].getMakeModel().equalsIgnoreCase(userText)) {
-                        vInventory[i].data();
+                        vInventory[i].getData();
                         tags += 1;
                     }
-                }/*end loop*/
+                }
                 if (tags == 0) {
                     System.out.println("None found");
                 }
                 break;
             }
             case 3 -> {
+                double num1 = 0;
+                double num2 = 0;
+                do {
+                    if (num1 < 0 || num2 < 0) {
+                        System.out.println("\n--------Invalid Range--------\n");
+                    }
+                    System.out.println("Enter price range");
+                    userText = userInput.nextLine();
+                    num1 = converter(userText);
+                    System.out.print(userText + " - ");
+                    userText = userInput.nextLine();
+                    num2 = converter(userText);
+                    System.out.printf("-------- (%.2f - %.2f) --------\n", num1, num2);
+                } while (num1 < 0 || num2 < 0);
+                double bigNum = num2;
+                double smallNum = num1;
+                if (num1 > num2) {
+                    smallNum = num2;
+                    bigNum = num1;
+                }
+                String[] sortHold;
+                double[] prices;
+                String HOLD = "";
+                for (int i = 0; i < vInventory.length; i++) {
+                    if (vInventory[i] == null){
+                        break;
+                    }
+                    if (vInventory[i].getPrice() >= smallNum && vInventory[i].getPrice() <= bigNum) {
+                        HOLD += String.format("%.2f%d|", vInventory[i].getPrice(), i);
+                    }
+                }
+                if (HOLD != "") {
+                    sortHold = HOLD.split("\\|");
+                    prices = new double[sortHold.length];
+                    for (int i = 0; i < sortHold.length; i++) {
+                        prices[i] = Double.parseDouble(sortHold[i]);
+                    }
+                    Arrays.sort(prices);
+                    for (int i = 0; i < prices.length; i++) {
+                        int lastDigit = (int) (prices[i] * 1000 + 0.5) % 10;
+                        vInventory[lastDigit].getData();
+                    }
+                } else {
+                    System.out.println("\n--------- Zero Vehicles Found ---------");
+                }
                 break;
             }
             case 4 -> {
@@ -76,4 +122,15 @@ public class VehicleInventoryApp {
 
         userInput.close();
     }
+
+    public static double converter(String text) {
+        String[] priceRange = text.split("\\,");
+        String placeHolder = "";
+        for (String numbers : priceRange){
+            placeHolder += numbers;
+        }
+        double number = Double.parseDouble(placeHolder);
+        return number;
+    }
+
 }

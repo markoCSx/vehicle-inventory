@@ -37,15 +37,15 @@ public class VehicleInventoryApp {
             }
             switch (answer) {
                 case 1 -> {
-                    for (int i = 0; i < 6; i++) {
-                        vInventory[1].getData();
+                    for (int i = 0; i < vInventory.length && vInventory[i] != null; i++) {
+                        vInventory[i].getData();
                     }
                 }
                 case 2 -> {
                     System.out.print("Enter Make/Model: ");
                     userText = userInput.nextLine();
                     int tags = 0;
-                    for (int i = 0; i < 6; i++) {
+                    for (int i = 0; i < vInventory.length && vInventory[i] != null; i++) {
                         if (vInventory[i].getMakeModel().equalsIgnoreCase(userText)) {
                             vInventory[i].getData();
                             tags += 1;
